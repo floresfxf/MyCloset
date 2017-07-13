@@ -9,6 +9,7 @@ cd /MyCloset
 npm install
 ```
 After this, simply open the project in expo, wait for everything to load, and you'll be all set!
+## Design Overview
 ### Clients Profile
 #### My Closet 
 This is where users scanned/submitted articles of clothing will be saved.
