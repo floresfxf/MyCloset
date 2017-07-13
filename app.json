@@ -1,0 +1,23 @@
+{
+  "expo": {
+    "name": "MyCloset",
+    "description": "Perfectly matched outfits in seconds!",
+    "slug": "hohoho",
+    "privacy": "public",
+    "sdkVersion": "18.0.0",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "primaryColor": "#A8FFFE",
+    "icon": "./img/closet_icon.png",
+    "loading": {
+      "icon": "./img/closet_icon.png",
+      "hideExponentText": false
+    },
+    "packagerOpts": {
+      "assetExts": ["ttf", "mp4"]
+    },
+    "ios": {
+      "supportsTablet": true
+    }
+  }
+}
