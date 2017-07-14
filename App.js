@@ -13,7 +13,8 @@ import {
   FlatList,
   Image,
   Keyboard,
-  KeyboardAvoidingView
+  KeyboardAvoidingView,
+  ListItem,
 } from 'react-native';
 import { StackNavigator, TabNavigator } from 'react-navigation';
 import Hr from 'react-native-hr';
@@ -252,7 +253,7 @@ const dummyData = [{imageURL: 'https://s-media-cache-ak0.pinimg.com/736x/33/17/b
                     dateCreated: 'July 4th',
                     rating: 3.5
                     }]
-
+const j = new Date()
 class UsersScreen extends React.Component {
   constructor(props){
       super(props);
@@ -261,12 +262,13 @@ class UsersScreen extends React.Component {
                             user:'pneedle',
                             designTitle: 'Casual Outfit',
                             articles: ['Louis Vouiton Red Tank','Gucci Floral Summer Shorts','Black Gucci Loafers', 'Red Nordstrom Jacket'],
-                            dateCreated: 'July 4th',
+                            dateCreated: j.toString(),
                             rating: 3.5
                             }]
       }
   }
   static navigationOptions = {
+   title: 'My Closet',
    tabBarLabel: 'Designs',
    tabBarIcon: ({ tintColor }) => (
      <Image
@@ -276,25 +278,29 @@ class UsersScreen extends React.Component {
    ),
   };
   render(){
-    console.log(this.state);
+    console.log(this.state.designs);
     return(
       <View style={styles.container}>
         <FlatList
-          dataSource={this.state.designs}
-          renderItem={(rowData) => (
+          data={this.state.designs}
+          keyExtractor={(item) => item.id}
+          renderItem={({item}) => (
             <View style={styles.containerFull}>
-              <TouchableOpacity>
+              <TouchableOpacity style={styles.textBox}>
                 <Image
+                  source={{uri: item.imageURL}}
                   style={styles.icon}
-                  source={{uri: rowData.imageURL}}
                 />
-                <Text>{rowData.username}</Text>
-                <Text>{rowData.rating}</Text>
-                <FlatList
-                  dataSource={rowData.articles}
-                  renderItem={(rowData) => (<Text>{rowData}</Text>
+                <Text>{item.designTitle}</Text>
+                <Text>{item.dateCreated}</Text>
+                <Text>{item.user}</Text>
+                {item.articles.map((item)=><Text>{item}</Text>)}
+                {/* <FlatList
+                  data={item.articles}
+                  keyExtractor={(items) => items.id}
+                  renderItem={({items}) => (<Text style={styles.textBox}>{items}</Text>
                   )}
-                />
+                /> */}
               </TouchableOpacity>
             </View>
           )}
