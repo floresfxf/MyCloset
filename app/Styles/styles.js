@@ -118,5 +118,13 @@ export default styles = StyleSheet.create({
   big_icon: {
   width: 120,
   height: 120,
-  }
+  },
+  tabsContainer: {
+  flexDirection: 'row',               // Arrange tabs in a row
+  paddingTop: 30,                     // Top padding
+},
+designRow: {
+    flex: 1
+}
+
 });
