@@ -20,7 +20,17 @@ import {
 import styles from '../Styles/styles.js';
 import { StackNavigator, TabNavigator } from 'react-navigation';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
-import SegmentedControlTab from 'react-native-segmented-control-tab'
+import SegmentedControlTab from 'react-native-segmented-control-tab';
+import Modal from 'react-native-modal';
+import StarRating from 'react-native-star-rating';
+import EntypoIcons from 'react-native-vector-icons/Entypo';
+import EvilIconsIcons from 'react-native-vector-icons/EvilIcons';
+import FontAwesomeIcons from 'react-native-vector-icons/FontAwesome';
+import FoundationIcons from 'react-native-vector-icons/Foundation';
+import IoniconsIcons from 'react-native-vector-icons/Ionicons';
+import MaterialIconsIcons from 'react-native-vector-icons/MaterialIcons';
+import OcticonsIcons from 'react-native-vector-icons/Octicons';
+import ZocialIcons from 'react-native-vector-icons/Zocial';
 
 
 const dummyDesigns = [
@@ -127,60 +137,6 @@ const dummyDesigns = [
 
 ]
 
-// class DesignTabs extends React.Component {
-//   constructor(props){
-//         super(props);
-//         // console.log('designtabs props', this.props);
-//         state = {
-//           activeTab: 0
-//         }
-//   }
-//
-//   render({ children } = this.props) {
-//     //   console.log(this.state);
-//     return (
-//       <View style={styles.container}>
-//           {/* <View style={styles.tabsContainer}>
-//           {/* Pull props out of children, and pull title out of props */}
-//           {children.map(({ props: { title } }, index) =>
-//               <TouchableOpacity
-//                   style={[
-//                           // Default style for every tab
-//                           // Merge default style with styles.tabContainerActive for active tab
-//                           styles.tabContainer,
-//                       index === this.state.activeTab ? styles.tabContainerActive : []
-//                   ]}
-//                   // Change active tab
-//                   onPress={() => this.setState({ activeTab: index }) }
-//                   // Required key prop for components generated returned by map iterator
-//                   key={index}
-//               >
-//                   <Text style={styles.tabText}>
-//                       {title}
-//                   </Text>
-//               </TouchableOpacity>
-//           )}
-//       </View>
-//           {/* Content */}
-//           <View style={styles.contentContainer}>
-//               {children[this.state.activeTab]}
-//           </View> */}
-//       </View>
-//     );
-//   }
-// }
-const DesignRow = (props) => (
-    <View>
-        <TouchableOpacity>
-            <Text>{this.props.user}</Text>
-            <Text>{this.props.rating}</Text>
-            {/* <Image source={{ uri: props.picture.large}} style={styles.photo} /> */}
-            <View>
-                {this.props.items.map( (item) => <Text>{item.type} {item.brand}</Text>)}
-            </View>
-        </TouchableOpacity>
-    </View>
-)
 
 export default class DesignsScreen extends React.Component {
     constructor(props){
@@ -188,7 +144,9 @@ export default class DesignsScreen extends React.Component {
           const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
           this.state = {
               dataSource: ds.cloneWithRows(dummyDesigns),
-              activeTab: 0
+              activeTab: 0,
+              isModalOpen: false,
+              filters: {}
           }
     }
 
@@ -197,13 +155,30 @@ export default class DesignsScreen extends React.Component {
     }
 
     onUpVote() {
-
+        //fetch to update it
     }
     onDownVote() {
-
+        //fet
     }
+
+    toggleFilter(){
+        this.setState({ isModalOpen: !this.state.isModalOpen })
+    }
+
+    onFilterSubmit() {
+        this.setState({ isModalOpen: false });
+        console.log('filters submitted', this.state.filters);
+    }
+
+    setFilter(value, type){
+        let currentFilters = this.state.filters;
+        currentFilters[type] = value;
+        this.setState({filters: currentFilters});
+    }
+
     static navigationOptions = {
            title: 'Designs',//title on header
+        //    headerRight: <Button title='Filter' onPress={() => toggleFilter()}><Image source={'../img/filtericon.png'}/></Button>, //TODO: NEED TO GET FILTER IMAGE AS BUTTON
            tabBarLabel: 'Designs',
      tabBarIcon: ({ tintColor }) => (
        <Image
@@ -215,17 +190,56 @@ export default class DesignsScreen extends React.Component {
   render(){
     return(
         <View>
+            <Modal
+                style={{ flex: 1, left: 0, top: 0, bottom: 0, height: '100%', width: '60%', backgroundColor: 'white' }}
+                animationIn={'slideInLeft'}
+                animationOut={'slideOutLeft'}
+                onRequestClose={() => {this.toggleFilter()}}
+                isVisible={this.state.isModalOpen}>
+                <View>
+                    <View>
+                        <Text>Designs by:</Text>
+                        <TextInput placeholder={"username"}
+                            style={styles.textBox}  autoCorrect={false} onChangeText={(text)=>this.setFilter(text,'username')}/>
+                    </View>
+                    <View>
+                        <Text>Rating: </Text>
+                        <StarRating
+                            maxStars={5}
+                            rating={this.state.filters['rating'] || 0}
+                            selectedStar={(rating) => this.setFilter(rating, 'rating')}
+                        />
+
+                    </View>
+                    <View>
+                        <Text>Season: </Text>
+
+                    </View>
+                    <View>
+                        <Text>Gender: </Text>
+
+                    </View>
+                    <View>
+                        <Text>Style: </Text>
+
+                    </View>
+                    <View style={{flexDirection: 'row'}}>
+                        <TouchableOpacity style={[styles.button, styles.buttonRed, {flex: 1}]} onPress={() => this.toggleFilter()}>
+                            <Text style={styles.buttonLabel}>Cancel</Text>
+                        </TouchableOpacity>
+                        <TouchableOpacity style={[styles.button, styles.buttonGreen, {flex: 1}]} onPress={() => this.onFilterSubmit()}>
+                            <Text style={styles.buttonLabel}>Filter</Text>
+                        </TouchableOpacity>
+                    </View>
+                </View>
+            </Modal>
             <SegmentedControlTab
-                // tabsContainerStyle={styles.designTabContainer}
-                // tabStyle={styles.tabStyle}
-                // tabTextStyle={styles.tabTextStyle}
-                // activeTabStyle={styles.activeTabStyle}
-                // activeTabTextStyle={styles.activeTabTextStyle}
                 values = {['All','Recommended']}
                 selectedIndex={this.state.activeTab}
                 onTabPress={this.handleIndexChange}
             />
             {/* {this.state.activeTab == 0 ? <Text>Hey tab1</Text> : <Text>Hey tab2</Text>} */}
+            <Button title='Filter' onPress={() => this.toggleFilter()}><Image source={'../img/filtericon.png'}/></Button>
             <ListView
                 //   style={{paddingBottom: 10}}
                 //   removeClippedSubviews={true}
@@ -233,32 +247,37 @@ export default class DesignsScreen extends React.Component {
                 renderRow={(rowData) => {
                     console.log(rowData);
                     return (
-                        <View style={{flexDirection: 'column', height: 140, borderBottomWidth: 1, borderColor: 'gray', padding: 2}}>
+                        <View style={{flexDirection: 'column', height: 140, borderBottomWidth: 1, borderColor: 'gray', padding: 2, backgroundColor: 'white'}}>
                             <View style={{flex: 1, flexDirection: 'row'}}>
                                 <View style={{flexDirection: 'column', height: '100%', width: 50, justifyContent: 'center', alignItems: 'center', padding: 5}}>
                                     <Text style={{color: '#157EFB', fontSize: 20}}>{rowData.ratings}</Text>
                                     <View style={{flexDirection: 'row'}}>
-                                        <TouchableOpacity ><Image style={{width: 25, height: 30, padding: 1}} resizeMode={'contain'} source={require('../img/uparrow.png')} /></TouchableOpacity>
-                                        <TouchableOpacity ><Image style={{width: 25, height: 30, padding: 1}} resizeMode={'contain'} source={require('../img/downarrow.png')} /></TouchableOpacity>
+                                        <TouchableOpacity >
+                                            <Image style={{width: 25, height: 30, padding: 1}} resizeMode={'contain'} source={require('../img/uparrow.png')} />
+                                        </TouchableOpacity>
+                                        <TouchableOpacity >
+                                            <Image style={{width: 25, height: 30, padding: 1}} resizeMode={'contain'} source={require('../img/downarrow.png')} />
+                                        </TouchableOpacity>
                                     </View>
                                 </View>
                                 <View style={{width: 140}}>
                                     <Text style={{fontSize: 20, alignSelf: 'flex-start'}}>{rowData.title}</Text>
                                     <Text style={{fontSize: 11, alignSelf: 'flex-end', paddingRight: 15}}>by: {rowData.user}</Text>
-                                    <View style={{overflow: 'hidden', padding: 5}}>
-                                        {rowData.items.map( (item) => <Text style={{fontSize: 11}}>{item.type} {item.brand}</Text>)}
+
+                                    <View style={{overflow: 'hidden', padding: 8, paddingLeft: 15}}>
+                                        {rowData.items.map( (item) => <Text style={{fontSize: 12, color:'gray'}}>- {item.type} {item.brand}</Text>)}
                                     </View>
 
                                 </View>
-                                <View style={{width: 130, borderWidth: 1, borderColor: 'pink'}}>
-                                    {rowData.items.map( (item) => <View style={{flex: 1, flexDirection: 'row', flexWrap: 'wrap', borderWidth: 1, borderColor: 'pink'}}><Image resizeMode={'stretch'} source={{uri: item.image}} style={{flex: 1}}/></View>)}
+                                <View style={{width: 120, borderWidth: 1, margin: 5}}>
+                                    {rowData.items.map( (item) => <View style={{flex: 1, flexDirection: 'row', flexWrap: 'wrap', borderWidth: 1}}><Image resizeMode={'cover'} source={{uri: item.image}} style={{flex: 1}}/></View>)}
                                 </View>
 
                             </View>
                             <View>
                                 <View style={{flexDirection: 'row', justifyContent: 'center'}}>
-                                    <Text>style tags:</Text>
-                                    {rowData.style.map( (stylename) => <Text style={{color: 'blue'}}>{stylename}</Text>)}
+                                    <Text>style:   </Text>
+                                    {rowData.style.map( (stylename) => <Text style={{color: 'blue', fontSize: 12}}>{stylename}  </Text>)}
                                 </View>
                             </View>
                         </View>
