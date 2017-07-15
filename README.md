@@ -1,5 +1,9 @@
 # MyCloset
-My closet is an interactive application written for iOS which helps users find top-rated matching outfits for articles of clothing they may have in their closet.
+My closet is an interactive application written for iOS which helps users find top-rated matching outfits for articles of clothing they may have in their closet. Users will have a profile with an individual closet and sketchbook. To use the closet, users will either input the item UPC (Found on the clothing tag) or manually enter the information to the database. When items are added to the closet, users will able to find top-rated outfits WITH these specific articles of clothing in their closet!
+
+  
+Users will also have a sketchbook, where they will make outfits and submit them to the server, which will be displayed on the apps newfeed. The newsfeed is divided into 'All' and 'recommended', where recommended designs are designs that contain at least one article of clothing from your closet. Users will be able to upvote and downvote designs that they find on their newsfeed. Both newsfeeds will be ordered by rating.
+
 ## Getting Started
 To run this code, you must have [Expo.io](https://expo.io/) installed.
 After this is done run these commands in your terminal:
