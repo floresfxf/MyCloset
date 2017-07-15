@@ -89,7 +89,9 @@ export default class ProfileScreen extends React.Component {
 // });
 //
 // }
+  render() {
 
+    return (
         <View style={styles.containerFull} >
           {/* <TouchableOpacity style={styles.item}
               onPress={() => this.props.navigation.navigate('Import') }>
@@ -170,5 +172,7 @@ export default class ProfileScreen extends React.Component {
 
 
         </View>
+      )
 
+}
 }
