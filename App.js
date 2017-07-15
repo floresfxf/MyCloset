@@ -26,6 +26,7 @@ import ProfileScreen from './app/Views/ProfileScreen.js';
 import LoginScreen from './app/Views/LoginScreen.js';
 import MyClosetScreen from './app/Views/MyClosetScreen.js';
 import DesignsScreen from './app/Views/DesignsScreen.js';
+import ImportScreen from './app/Views/ImportScreen.js';
 
 const baseURL = 'https://hohoho-backend.herokuapp.com';
 //Screens
@@ -60,6 +61,8 @@ class MainScreen extends React.Component {
   }
 }
 
+
+
 const MyApp = TabNavigator({
   Home: {
     screen: DesignsScreen,
@@ -89,6 +92,9 @@ export default StackNavigator({
   },
   Register: {
     screen: RegisterScreen,
+  },
+  Import: {
+    screen: ImportScreen,
   },
   Tab: {
     screen: MyApp,

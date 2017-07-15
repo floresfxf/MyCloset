@@ -112,8 +112,24 @@ export default styles = StyleSheet.create({
     color: 'black'
   },
   icon: {
-   width: 26,
-   height: 26,
+    width: 26,
+    height: 26,
+  },
+  camera: {
+    flex: 1
+  },
+  rectangleContainer: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: 'transparent'
+  },
+  rectangle: {
+    height: 250,
+    width: 250,
+    borderWidth: 2,
+    borderColor: '#00FF00',
+    backgroundColor: 'transparent'
   },
   big_icon: {
   width: 120,
