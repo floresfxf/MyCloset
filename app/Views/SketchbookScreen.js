@@ -26,6 +26,7 @@ export default class MySketchbookScreen extends React.Component {
   static navigationOptions = {
     title: 'My Sketchbook',
    tabBarLabel: 'Sketchbook',
+   headerLeft: false,
    tabBarIcon: ({ tintColor }) => (
      <Image
          source={require('../img/sketchbook_icon.png')}

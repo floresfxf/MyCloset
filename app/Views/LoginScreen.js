@@ -23,6 +23,8 @@ import RegisterScreen from './RegisterScreen';
 // import MyClosetScreen from '../../App';
 const baseURL = 'https://fringuante-moliere-12742.herokuapp.com';
 
+console.disableYellowBox = true;
+
 export default class LoginScreen extends React.Component { //TODO: Save user information to DB and implement async storage
   constructor(props){
     super(props);
