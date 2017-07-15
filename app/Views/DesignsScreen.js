@@ -27,109 +27,109 @@ import SegmentedControlTab from 'react-native-segmented-control-tab';
 
 
 
-const dummyDesigns = [
-    {
-        user: 'kevin123',
-        title: 'designtitle',
-        ratings: 50,
-        style: ['casual', 'lounge'],
-        items: [
-            {type: 'Sweatpants',
-            brand: 'H&M',
-            image: 'http://lp.hm.com/hmprod?set=key[source],value[/model/2017/E00%200478831%20001%2043%202395.jpg]&set=key[rotate],value[]&set=key[width],value[]&set=key[height],value[]&set=key[x],value[]&set=key[y],value[]&set=key[type],value[STILL_LIFE_FRONT]&set=key[hmver],value[3]&call=url[file:/product/full]',
-            description: '',
-            gender: 'Mens'
-        },
-        {type: 'TShirt',
-        brand: 'Adidas',
-        image: 'http://images.champssports.com/is/image/EBFL2/S23125_fr_sc7_copy?hei=1500&wid=1500',
-        description: '',
-        gender: 'Unisex'
-        },
-        {type: 'Sweatshirt',
-        brand: 'Polo Ralph Lauren',
-        image: 'http://s7d2.scene7.com/is/image/PoloGSI/s7-1242056_lifestyle?$flyout_main$&cropN=0.12,0,0.7993,1&iv=Bm2et1&wid=1410&hei=1770&fit=fit,1',
-        description: '',
-        gender: 'Unisex'
-    }]
-},
-{
-    user: 'frankie123',
-    title: 'designtitle',
-    ratings: 20,
-    style: ['going out', 'trendy'],
-        items: [
-            {type: 'Jeans',
-            brand: 'Levi',
-            image: '../img/levijeans.jpg',
-            description: '',
-            gender: 'Womens'
-        },
-        {type: 'TShirt',
-        brand: 'Gucci',
-        image: '../img/guccivintageshirt.jpg',
-        description: 'Gucci Vintage Shirt',
-        gender: 'Unisex'
-        },
-        {type: 'Shoes',
-        brand: 'Adidas',
-        image: '../img/adidassneakers.jpg',
-        description: '',
-        gender: 'Unisex'
-    }]
-},
-{
-    user: 'pam123',
-    title: 'designtitle',
-    ratings: 20,
-    style: ['going out', 'trendy'],
-        items: [
-            {type: 'Jeans',
-            brand: 'Levi',
-            image: '../img/levijeans.jpg',
-            description: '',
-            gender: 'Womens'
-        },
-        {type: 'TShirt',
-        brand: 'Gucci',
-        image: '../img/guccivintageshirt.jpg',
-        description: 'Gucci Vintage Shirt',
-        gender: 'Unisex'
-        },
-        {type: 'Shoes',
-        brand: 'Adidas',
-        image: '../img/adidassneakers.jpg',
-        description: '',
-        gender: 'Unisex'
-    }]
-},
-{
-    user: 'someonelse123',
-    ratings: 20,
-    title: 'designtitle',
-    style: ['going out', 'trendy'],
-        items: [
-            {type: 'Jeans',
-            brand: 'Levi',
-            image: '../img/levijeans.jpg',
-            description: '',
-            gender: 'Womens'
-        },
-        {type: 'TShirt',
-        brand: 'Gucci',
-        image: '../img/guccivintageshirt.jpg',
-        description: 'Gucci Vintage Shirt',
-        gender: 'Unisex'
-        },
-        {type: 'Shoes',
-        brand: 'Adidas',
-        image: '../img/adidassneakers.jpg',
-        description: '',
-        gender: 'Unisex'
-    }]
-}
-
-]
+// const dummyDesigns = [
+//     {
+//         user: 'kevin123',
+//         title: 'designtitle',
+//         ratings: 50,
+//         style: ['casual', 'lounge'],
+//         items: [
+//             {type: 'Sweatpants',
+//             brand: 'H&M',
+//             image: 'http://lp.hm.com/hmprod?set=key[source],value[/model/2017/E00%200478831%20001%2043%202395.jpg]&set=key[rotate],value[]&set=key[width],value[]&set=key[height],value[]&set=key[x],value[]&set=key[y],value[]&set=key[type],value[STILL_LIFE_FRONT]&set=key[hmver],value[3]&call=url[file:/product/full]',
+//             description: '',
+//             gender: 'Mens'
+//         },
+//         {type: 'TShirt',
+//         brand: 'Adidas',
+//         image: 'http://images.champssports.com/is/image/EBFL2/S23125_fr_sc7_copy?hei=1500&wid=1500',
+//         description: '',
+//         gender: 'Unisex'
+//         },
+//         {type: 'Sweatshirt',
+//         brand: 'Polo Ralph Lauren',
+//         image: 'http://s7d2.scene7.com/is/image/PoloGSI/s7-1242056_lifestyle?$flyout_main$&cropN=0.12,0,0.7993,1&iv=Bm2et1&wid=1410&hei=1770&fit=fit,1',
+//         description: '',
+//         gender: 'Unisex'
+//     }]
+// },
+// {
+//     user: 'frankie123',
+//     title: 'designtitle',
+//     ratings: 20,
+//     style: ['going out', 'trendy'],
+//         items: [
+//             {type: 'Jeans',
+//             brand: 'Levi',
+//             image: '../img/levijeans.jpg',
+//             description: '',
+//             gender: 'Womens'
+//         },
+//         {type: 'TShirt',
+//         brand: 'Gucci',
+//         image: '../img/guccivintageshirt.jpg',
+//         description: 'Gucci Vintage Shirt',
+//         gender: 'Unisex'
+//         },
+//         {type: 'Shoes',
+//         brand: 'Adidas',
+//         image: '../img/adidassneakers.jpg',
+//         description: '',
+//         gender: 'Unisex'
+//     }]
+// },
+// {
+//     user: 'pam123',
+//     title: 'designtitle',
+//     ratings: 20,
+//     style: ['going out', 'trendy'],
+//         items: [
+//             {type: 'Jeans',
+//             brand: 'Levi',
+//             image: '../img/levijeans.jpg',
+//             description: '',
+//             gender: 'Womens'
+//         },
+//         {type: 'TShirt',
+//         brand: 'Gucci',
+//         image: '../img/guccivintageshirt.jpg',
+//         description: 'Gucci Vintage Shirt',
+//         gender: 'Unisex'
+//         },
+//         {type: 'Shoes',
+//         brand: 'Adidas',
+//         image: '../img/adidassneakers.jpg',
+//         description: '',
+//         gender: 'Unisex'
+//     }]
+// },
+// {
+//     user: 'someonelse123',
+//     ratings: 20,
+//     title: 'designtitle',
+//     style: ['going out', 'trendy'],
+//         items: [
+//             {type: 'Jeans',
+//             brand: 'Levi',
+//             image: '../img/levijeans.jpg',
+//             description: '',
+//             gender: 'Womens'
+//         },
+//         {type: 'TShirt',
+//         brand: 'Gucci',
+//         image: '../img/guccivintageshirt.jpg',
+//         description: 'Gucci Vintage Shirt',
+//         gender: 'Unisex'
+//         },
+//         {type: 'Shoes',
+//         brand: 'Adidas',
+//         image: '../img/adidassneakers.jpg',
+//         description: '',
+//         gender: 'Unisex'
+//     }]
+// }
+//
+// ]
 
 export default class DesignsScreen extends React.Component {
     constructor(props){
@@ -153,24 +153,19 @@ export default class DesignsScreen extends React.Component {
         fetch('https://fringuante-moliere-12742.herokuapp.com/all/designs', {
           method: 'GET'
         })
-        .then((response) => {
-            // alert(response);
-            console.log(response);
-            return response.json();
-        })
+        .then((response) => response.json() )
         .then((responseJson) => {
-            // alert(responseJson)
-           if(responseJson.success){
-               let filteredData = this.filterData(responseJson.designs);
-
-
-              const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2})
-              this.setState({refreshing: false, dataSource: ds.cloneWithRows(filteredData)});
-           }else{
-               alert(responseJson.error);
-               console.log('error in get designs', responseJson.error);
-               this.setState({refreshing: false});
-           }
+            console.log('responsejson in get desings', responseJson);
+            let filteredData = this.filterData(responseJson);
+        //    if(responseJson.success){
+        //        console.log('success');
+        //     //   const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2})
+        //     //   this.setState({refreshing: false, dataSource: ds.cloneWithRows(filteredData)});
+        //    }else{
+        //     //    alert(responseJson.error);
+        //        console.log('error in get designs', responseJson.error);
+        //        this.setState({refreshing: false});
+        //    }
         })
         .catch((err) => {
             // alert(err);
@@ -186,19 +181,20 @@ export default class DesignsScreen extends React.Component {
 
     onVote(design, direction) {
         //fetch to update it
-        let requestBody = JSON.stringify({to: design._id});
-        fetch('https://fringuante-moliere-12742.herokuapp.com/designs/'+direction+'/:designId', {
+        fetch('https://fringuante-moliere-12742.herokuapp.com/designs/'+direction+'/'+design._id, {
             method: 'POST',
             headers: {
                 "Content-Type": "application/json"
-            },
-            body: requestBody
+            }
         })
-        .then( (response) => response.json())
+        .then( (response) => {
+            console.log(response);
+            return response.json()})
         .then( (responseJson) => {
-            if(responseJson.success){
-              alert('sucessful votehOW THE FUCK DO I HANDLE THIS')
-            } else{
+            console.log(responseJson);
+            alert('sucessful votehOW THE FUCK DO I HANDLE THIS')
+            if(responseJson.error){
+
               alert('upvote falied idk why')
           }
         })
@@ -209,19 +205,20 @@ export default class DesignsScreen extends React.Component {
         });
     }
 
-    // filterData() {
-    //     const filters = this.state.filters;
-    //     const newdata = dummyDesigns.filter( (design) => {
-    //         //if the users inputed a username that was larger than 3 characters(any smaler is invalid)
-    //         if(filters['username']){
-    //             return filters['username'] == design.user
-    //         }
-    //         return true
-    //     })
-    //     const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
-    //     this.setState({dataSource: ds.cloneWithRows(newdata)})
-    //     return this.state.dataSource;
-    // }
+    filterData(data) {
+        console.log('data in filterdata', data);
+        const filters = this.state.filters;
+        const newdata = data.filter( (design) => {
+            //if the users inputed a username that was larger than 3 characters(any smaler is invalid)
+            if(filters['username']){
+                return filters['username'] == design.user
+            }
+            return true
+        })
+        const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
+        this.setState({dataSource: ds.cloneWithRows(newdata), refreshing: false})
+        return this.state.dataSource;
+    }
 
     toggleFilter(){
         this.setState({ isModalOpen: !this.state.isModalOpen })
@@ -295,7 +292,7 @@ export default class DesignsScreen extends React.Component {
                         <View style={{flexDirection: 'column', height: 140, borderBottomWidth: 1, borderColor: 'gray', padding: 2, backgroundColor: 'white'}}>
                             <View style={{flex: 1, flexDirection: 'row'}}>
                                 <View style={{flexDirection: 'column', height: '100%', width: 50, justifyContent: 'center', alignItems: 'center', padding: 5}}>
-                                    <Text style={{color: '#157EFB', fontSize: 20}}>{rowData.ratings}</Text>
+                                    <Text style={{color: '#157EFB', fontSize: 20}}>{rowData.rating}</Text>
                                     <View style={{flexDirection: 'row'}}>
                                         <TouchableOpacity onPress={this.onVote.bind(this,rowData, 'voteup')}>
                                             <Image style={{width: 25, height: 30, padding: 1}} resizeMode={'contain'} source={require('../img/uparrow.png')} />
@@ -328,9 +325,9 @@ export default class DesignsScreen extends React.Component {
                         </View>
                     )
                 }}
-                    // <DesignRow {...rowData}
-                    //     // user={rowData.user}
-                    //     // ratings={rowData.ratings}
+                // <DesignRow {...rowData}
+                //     // user={rowData.user}
+                //     // ratings={rowData.ratings}
                     //     // items={rowData.items}
                     // />
 
