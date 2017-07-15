@@ -134,7 +134,11 @@ import SegmentedControlTab from 'react-native-segmented-control-tab';
 export default class DesignsScreen extends React.Component {
     constructor(props){
           super(props);
-          const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
+        const rowHasChanged = (r1, r2) => {
+            console.log("r1, r2", r1, r2);
+            if (r1.rating !== r2.rating) return true;
+        }
+          const ds = new ListView.DataSource({rowHasChanged: rowHasChanged});
           this.state = {
               dataSource: ds.cloneWithRows([]),
               activeTab: 0,
@@ -156,6 +160,7 @@ export default class DesignsScreen extends React.Component {
         .then((response) => response.json() )
         .then((responseJson) => {
             console.log('responsejson in get desings', responseJson);
+            // this.setState({designs: })
             let filteredData = this.filterData(responseJson);
         //    if(responseJson.success){
         //        console.log('success');
@@ -180,7 +185,7 @@ export default class DesignsScreen extends React.Component {
     }
 
     onVote(design, direction) {
-        //fetch to update it
+        console.log(this.state.dataSource);
         fetch('https://fringuante-moliere-12742.herokuapp.com/designs/'+direction+'/'+design._id, {
             method: 'POST',
             headers: {
@@ -194,7 +199,6 @@ export default class DesignsScreen extends React.Component {
             console.log(responseJson);
             alert('sucessful votehOW THE FUCK DO I HANDLE THIS')
             if(responseJson.error){
-
               alert('upvote falied idk why')
           }
         })
@@ -209,13 +213,17 @@ export default class DesignsScreen extends React.Component {
         console.log('data in filterdata', data);
         const filters = this.state.filters;
         const newdata = data.filter( (design) => {
-            //if the users inputed a username that was larger than 3 characters(any smaler is invalid)
             if(filters['username']){
                 return filters['username'] == design.user
             }
             return true
         })
-        const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
+        const rowHasChanged = (r1, r2) => {
+            console.log("r1, r2", r1, r2);
+            if (r1.rating !== r2.rating) return true;
+        }
+          const ds = new ListView.DataSource({rowHasChanged: rowHasChanged});
+        // const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
         this.setState({dataSource: ds.cloneWithRows(newdata), refreshing: false})
         return this.state.dataSource;
     }
