@@ -10,6 +10,7 @@ import {
   Alert,
   Button,
   AsyncStorage,
+  RefreshControl,
   FlatList,
   Image,
   Keyboard,
@@ -130,68 +131,117 @@ const dummyDesigns = [
 
 ]
 
-const seasons = [{label: 'All', value: 0 },
-    {label: 'Winter', value: 1 },{label: 'Spring', value: 2 },{label: 'Summer', value: 3 },{label: 'Fall', value: 4 }]
-const gender =[{label: 'Unisex', value: 0 },
-    {label: 'Mens', value: 1 },{label: 'Womens', value: 2 }]
 export default class DesignsScreen extends React.Component {
     constructor(props){
           super(props);
           const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
           this.state = {
-              dataSource: ds.cloneWithRows(dummyDesigns),
+              dataSource: ds.cloneWithRows([]),
               activeTab: 0,
+              refreshing: false,
               isModalOpen: false,
               filters: {}
           }
+          this.getDesigns();
     }
 
     handleIndexChange = (index) => {
         this.setState({...this.state, activeTab: index})
     }
-
-    onUpVote() {
-        //fetch to update it
-    }
-    onDownVote() {
-        //fet
-    }
-
-    filterData() {
-        const filters = this.state.filters;
-        const newdata = dummyDesigns.filter( (design) => {
-            //if the users inputed a username that was larger than 3 characters(any smaler is invalid)
-            if(filters['username']){
-                return filters['username'] == design.user
-            }
-            return true
+    getDesigns() {
+        // alert('get designs called')
+        fetch('https://fringuante-moliere-12742.herokuapp.com/all/designs', {
+          method: 'GET'
         })
-        const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
-        this.setState({dataSource: ds.cloneWithRows(newdata)})
-        return this.state.dataSource;
+        .then((response) => {
+            // alert(response);
+            console.log(response);
+            return response.json();
+        })
+        .then((responseJson) => {
+            // alert(responseJson)
+           if(responseJson.success){
+               let filteredData = this.filterData(responseJson.designs);
+
+
+              const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2})
+              this.setState({refreshing: false, dataSource: ds.cloneWithRows(filteredData)});
+           }else{
+               alert(responseJson.error);
+               console.log('error in get designs', responseJson.error);
+               this.setState({refreshing: false});
+           }
+        })
+        .catch((err) => {
+            // alert(err);
+            console.log('caught error in catch of getdesigns', err);
+        });
     }
+
+    _onRefresh() {
+      console.log('ON REFRESH CALLED');
+      this.setState({refreshing: true});
+      this.getDesigns();
+    }
+
+    onVote(design, direction) {
+        //fetch to update it
+        let requestBody = JSON.stringify({to: design._id});
+        fetch('https://fringuante-moliere-12742.herokuapp.com/designs/'+direction+'/:designId', {
+            method: 'POST',
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: requestBody
+        })
+        .then( (response) => response.json())
+        .then( (responseJson) => {
+            if(responseJson.success){
+              alert('sucessful votehOW THE FUCK DO I HANDLE THIS')
+            } else{
+              alert('upvote falied idk why')
+          }
+        })
+        .catch((err) => {
+          console.log('error in vote', err);
+          alert('error in vote', err);
+
+        });
+    }
+
+    // filterData() {
+    //     const filters = this.state.filters;
+    //     const newdata = dummyDesigns.filter( (design) => {
+    //         //if the users inputed a username that was larger than 3 characters(any smaler is invalid)
+    //         if(filters['username']){
+    //             return filters['username'] == design.user
+    //         }
+    //         return true
+    //     })
+    //     const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
+    //     this.setState({dataSource: ds.cloneWithRows(newdata)})
+    //     return this.state.dataSource;
+    // }
 
     toggleFilter(){
         this.setState({ isModalOpen: !this.state.isModalOpen })
     }
 
     onFilterSubmit(filters) {
-        // let filtersCopy = JSON.parse(JSON.stringify(filters));
-        // if(filtersCopy['username'] && !filtersCopy['username'].length > 3){
-        //     delete filtersCopy['username'];
-        //
-        // this.setState({ isModalOpen: false, filters: filtersCopy });
-        const newdata = dummyDesigns.filter( (design) => {
-            //if the users inputed a username that was larger than 3 characters(any smaler is invalid)
-            let userFilter = true;
-            if(filters['username'] && filters['username'].length > 4){
-                userFilter = (filters['username'].toUpperCase() == design.user.toUpperCase());
-            }
-            return userFilter
-        })
-        const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
-        this.setState({ isModalOpen: false, filters: filters, dataSource: ds.cloneWithRows(newdata) });
+        this.setState({ isModalOpen: false, filters: filters});
         console.log('filters submitted YEAAAAAAAAAAAAA', filters);
+        this.getDesigns();
+        // const newdata = dummyDesigns.filter( (design) => {
+        //     //if the users inputed a username that was larger than 3 characters(any smaler is invalid)
+        //     let userFilter = true;
+        //     if(filters['username'] && filters['username'].length > 4){
+        //         userFilter = (filters['username'].toUpperCase() == design.user.toUpperCase());
+        //     }
+        //     return userFilter
+        // })
+        // const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
+        // this.setState({ isModalOpen: false, filters: filters, dataSource: ds.cloneWithRows(newdata) });
+
     }
 
 
@@ -230,6 +280,16 @@ export default class DesignsScreen extends React.Component {
                 //   style={{paddingBottom: 10}}
                 //   removeClippedSubviews={true}
                 dataSource={this.state.dataSource}
+                refreshControl={
+                    <RefreshControl
+                        refreshing={this.state.refreshing}
+                        onRefresh={this._onRefresh.bind(this)}
+                        tintColor="#ff0000"
+                        title="Loading..."
+                        titleColor="#00ff00"
+                        colors={['#ff0000', '#00ff00', '#0000ff']}
+                        progressBackgroundColor="#ffff00"
+                    />}
                 renderRow={(rowData) => {
                     return (
                         <View style={{flexDirection: 'column', height: 140, borderBottomWidth: 1, borderColor: 'gray', padding: 2, backgroundColor: 'white'}}>
@@ -237,10 +297,10 @@ export default class DesignsScreen extends React.Component {
                                 <View style={{flexDirection: 'column', height: '100%', width: 50, justifyContent: 'center', alignItems: 'center', padding: 5}}>
                                     <Text style={{color: '#157EFB', fontSize: 20}}>{rowData.ratings}</Text>
                                     <View style={{flexDirection: 'row'}}>
-                                        <TouchableOpacity >
+                                        <TouchableOpacity onPress={this.onVote.bind(this,rowData, 'voteup')}>
                                             <Image style={{width: 25, height: 30, padding: 1}} resizeMode={'contain'} source={require('../img/uparrow.png')} />
                                         </TouchableOpacity>
-                                        <TouchableOpacity >
+                                        <TouchableOpacity onPress={this.onVote.bind(this,rowData, 'votedown')}>
                                             <Image style={{width: 25, height: 30, padding: 1}} resizeMode={'contain'} source={require('../img/downarrow.png')} />
                                         </TouchableOpacity>
                                     </View>
