@@ -41,6 +41,7 @@ export default class LoginScreen extends React.Component { //TODO: Save user inf
     console.log('Mount');
     AsyncStorage.getItem('user')
     .then(result => {
+        console.log(result);
       if (result){
         var parsedResult = JSON.parse(result);
         var username = parsedResult.username;
@@ -88,7 +89,14 @@ export default class LoginScreen extends React.Component { //TODO: Save user inf
         password: this.state.password
       })
     })
-    .then((response) => response.json())
+    .then((response) => {
+        console.log(response);
+        if (response.ok){
+            return response.json();
+        }else{
+            Alert.alert('Login Failed', 'Check your credentials and try again.')
+        }
+    })
     .then((resp) => {
       console.log(resp);
       if(resp.success){
@@ -105,6 +113,7 @@ export default class LoginScreen extends React.Component { //TODO: Save user inf
       }
     })
     .catch((err) => {
+        console.log(err);
       self.setState({
         error:err["error"]
       })
@@ -117,17 +126,17 @@ export default class LoginScreen extends React.Component { //TODO: Save user inf
   render() {
     return (
       <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-        <KeyboardAwareScrollView contentContainerStyle={styles.loginContainer}>
+          <KeyboardAwareScrollView contentContainerStyle={styles.loginContainer}>
 
-          <Image
-            source={require('../img/closet_icon.png')}
-            style={ styles.big_icon }
-          />
-          <TextInput placeholder={"Username"}
-            onChangeText={(text)=>this.setState({username:text})}
-            autoCorrect={false}  style={styles.textBox}/>
+              <Image
+                  source={require('../img/closet_icon.png')}
+                  style={ styles.big_icon }
+              />
+              <TextInput placeholder={"Username"}
+                  onChangeText={(text)=>this.setState({username:text})}
+                  autoCorrect={false}  style={styles.textBox}/>
 
-            <Hr lineColor={'#DCDCDC'}/>
+              <Hr lineColor={'#DCDCDC'}/>
 
             <TextInput placeholder={"Password"}
               style={styles.textBox}  autoCorrect={false} secureTextEntry={true} onChangeText={(text)=>this.setState({ password: text })} />

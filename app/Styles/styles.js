@@ -19,6 +19,8 @@ export default styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'stretch',
     backgroundColor: '#F5FCFF',
+    alignItems:'flex-start'
+
   },
   layer1:{
     flexDirection: 'row',
