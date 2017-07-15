@@ -21,8 +21,8 @@ https://fringuante-moliere-12742.herokuapp.com
 These are the routes you will use to communicate with the database:
   
 **METHOD: POST**  
-`/users/register`  
 *Register a new user*  
+`/users/register`  
   
 Body:
  * username
