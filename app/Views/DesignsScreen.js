@@ -147,10 +147,9 @@ export default class DesignsScreen extends React.Component {
               filters: {},
               designs: []
           }
-        //   this.getDesigns();
+          this.getDesigns();
     }
-    // static navigationOptions = (props) => ({
-    // headerRight: <Button title='Messages' onPress={() => navigation.state.params.onRightPress()}>
+
     static navigationOptions = ({navigation}) => {
         return {
            title: 'Designs',//title on header
@@ -164,25 +163,13 @@ export default class DesignsScreen extends React.Component {
      ),
  }
     };
-    // static navigationOptions = ({navigation}) => {
-    //     return {
-    //     headerRight: (<Button title='Filter' onPress={()=>navigation.state.params.onRightPress()}/>),
-    //     }
-    // };
+
     componentDidMount() {
         this.props.navigation.setParams({
             onRightPress: () => this.toggleFilter()
         })
     }
-    // componentDidMount() {
-    //     const params = {
-    //         right: (
-    //             <Button title='Filter' onPress={()=> navigation.state.params.onRightPress()} />
-    //         ),
-    //     };
-    //
-    //     this.props.navigation.setParams(params);
-    // }
+
     componentWillMount(){
         this.getDesigns();
     }
@@ -191,7 +178,6 @@ export default class DesignsScreen extends React.Component {
         this.setState({...this.state, activeTab: index})
     }
     getDesigns() {
-        // alert('get designs called')
         fetch('https://fringuante-moliere-12742.herokuapp.com/all/designs', {
           method: 'GET'
         })
@@ -202,16 +188,7 @@ export default class DesignsScreen extends React.Component {
         .then((responseJson) => {
             console.log('responsejson', responseJson);
             let filteredData = this.filterData(responseJson);
-          //  if(responseJson.success){
-           //
-           //
-          //     const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2})
-          //     this.setState({refreshing: false, dataSource: ds.cloneWithRows(filteredData)});
-          //  }else{
-          //      alert(responseJson.error);
-          //      console.log('error in get designs', responseJson.error);
-          //      this.setState({refreshing: false});
-          //  }
+
 
         })
         .catch((err) => {
@@ -252,9 +229,6 @@ export default class DesignsScreen extends React.Component {
             // const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
             this.setState({dataSource: ds.cloneWithRows(newDesigns), refreshing: false, designs: newDesigns});
 
-
-
-
             if(responseJson.error){
               alert('upvote falied idk why')
           }
@@ -264,15 +238,12 @@ export default class DesignsScreen extends React.Component {
           alert('error in vote', err);
 
         });
-
-
     }
 
     filterData(data) {
         const filters = this.state.filters;
         const newdata = data.filter( (design) => {
             //if the users inputed a username that was larger than 3 characters(any smaler is invalid)
-
             if(filters['username']){
                 return filters['username'] == design.user
             }
@@ -285,7 +256,6 @@ export default class DesignsScreen extends React.Component {
           const ds = new ListView.DataSource({rowHasChanged: rowHasChanged});
         // const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
         this.setState({dataSource: ds.cloneWithRows(newdata), refreshing: false, designs: newdata})
-
         return this.state.dataSource;
     }
 

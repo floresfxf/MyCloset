@@ -115,34 +115,34 @@ export default class MyClosetScreen extends React.Component {
       />
     ),
   };
-  // componentDidMount(){
-  //   const self = this;
-  //   console.log('Mount');
-  //   let user;
-  //   AsyncStorage.getItem('user')
-  //   .then(result => {
-  //     if (result){
-  //       console.log(result);
-  //       var parsedResult = JSON.parse(result);
-  //       user = parsedResult.username;
-  //       console.log(user);
-  //     }
-  //
-  //     fetch('https://fringuante-moliere-12742.herokuapp.com' + '/all/items/' + user, {
-  //       method: 'GET'
-  //     })
-  //     .then((response) => response.json())
-  //     .then((responseJson) => {
-  //       console.log(responseJson);
-  //       // console.log([...responseJson]);
-  //       this.setState({ data: responseJson})
-  //     })
-  //     .catch((err) => {
-  //       // alert(err);
-  //       console.log('caught error in catch of getdesigns', err);
-  //     });
-  //   })
-  // }
+  componentDidMount(){
+    const self = this;
+    console.log('Mount');
+    let user;
+    AsyncStorage.getItem('user')
+    .then(result => {
+      if (result){
+        console.log(result);
+        var parsedResult = JSON.parse(result);
+        user = parsedResult.username;
+        console.log(user);
+      }
+
+      fetch('https://fringuante-moliere-12742.herokuapp.com' + '/all/items/' + user, {
+        method: 'GET'
+      })
+      .then((response) => response.json())
+      .then((responseJson) => {
+        console.log(responseJson);
+        // console.log([...responseJson]);
+        this.setState({ data: responseJson})
+      })
+      .catch((err) => {
+        // alert(err);
+        console.log('caught error in catch of getdesigns', err);
+      });
+    })
+  }
 
   onCancel = () => {
     var newData= this.state.data.slice();
