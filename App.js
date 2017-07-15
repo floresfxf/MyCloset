@@ -67,7 +67,7 @@ class MainScreen extends React.Component {
 
 const MyApp = TabNavigator({
   Home: {
-    screen: DesignsScreen,
+    screen: ProfileScreen,
   },
   Closet: {
     screen: MyClosetScreen,

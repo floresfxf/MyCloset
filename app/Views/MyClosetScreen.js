@@ -149,9 +149,7 @@ export default class MyClosetScreen extends React.Component {
           this.setState({data: nwData})
 
   }
-logState () {
-  console.log(this.state)
-}
+
   onChangeText = (text) => {
       return new Promise((resolve, reject) => {
           console.log('onChangeText', text);
@@ -162,7 +160,7 @@ logState () {
   render(){
     return(
       <View style={{ flex: 1}}>
-        <Text> Choose your designs </Text>
+        <Text> Select items from your closet to find outfits </Text>
         <Search
           ref="search_box"
           onSearch={(text) => this.onSearch(text)}
@@ -181,7 +179,8 @@ logState () {
           data={this.state.data.filter(function(dat){
             return dat.visible
           })
-        }
+          }
+          //data={this.state.data}
           renderRow={this.renderRow}
           rowHeight={40}
           sectionHeaderHeight={40}
