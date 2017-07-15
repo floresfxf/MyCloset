@@ -22,7 +22,7 @@ These are the routes you will use to communicate with the database:
   
 **METHOD:POST**  
 `/users/register`  
-Register a new user  
+*Register a new user*  
   
 Body:
  * username
@@ -30,7 +30,7 @@ Body:
   
 **METHOD:POST**  
 `/users/login`    
-Check a users credentials  
+*Check a users credentials*  
   
 Body:
  * username
@@ -38,23 +38,23 @@ Body:
   
 **METHOD:GET**  
 `/all/items/:username`   
-Generate all items in a specified users closet  
+*Generate all items in a specified users closet*  
   
 **METHOD:GET**  
 `/all/:username`  
-Generate the entire user model object  
+*Generate the entire user model object*  
   
 **METHOD:GET**  
 `/all/designs`  
-Generate all existing designs (NEWSFEED) 
+*Generate all existing designs (NEWSFEED)*  
   
 **METHOD:GET**  
 `/all/designs/:username`  
-Generate all designs for one specific user  
+*Generate all designs for one specific user*  
   
 **METHOD:POST**  
 `/new/items/:username`   
-Add an article of clothing to a specific users closet  
+*Add an article of clothing to a specific users closet*  
   
 Body:
  * type
@@ -65,7 +65,7 @@ Body:
   
 **METHOD:POST**  
 `/new/designs/:username`  
-Add a new design to a specific users sketchbook  
+*Add a new design to a specific users sketchbook*  
   
 Body:
  * styles
@@ -74,11 +74,11 @@ Body:
   
 **METHOD:POST**  
 `/designs/voteup/:designId`   
-Up vote a design  
+*Up vote a design*  
   
 **METHOD:POST**  
 `/designs/votedown/:designId`  
-Down vote a design  
+*Down vote a design*  
   
 
 
