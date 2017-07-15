@@ -19,6 +19,14 @@ export default styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'stretch',
     backgroundColor: '#F5FCFF',
+    alignItems:'flex-start'
+
+  },
+  layer1:{
+    flexDirection: 'row',
+    flex:1,
+    width: 80,
+    height: 80,
   },
   map: {
     height: 100,

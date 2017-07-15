@@ -5,6 +5,7 @@ import {
   Text,
   TouchableOpacity,
   TouchableWithoutFeedback,
+  TouchableHighLight,
   TextInput,
   ListView,
   Alert,
@@ -27,6 +28,7 @@ import LoginScreen from './app/Views/LoginScreen.js';
 import MyClosetScreen from './app/Views/MyClosetScreen.js';
 import DesignsScreen from './app/Views/DesignsScreen.js';
 import ImportScreen from './app/Views/ImportScreen.js';
+
 
 const baseURL = 'https://hohoho-backend.herokuapp.com';
 //Screens
@@ -65,10 +67,13 @@ class MainScreen extends React.Component {
 
 const MyApp = TabNavigator({
   Home: {
-    screen: DesignsScreen,
+    screen: ProfileScreen,
   },
   Closet: {
     screen: MyClosetScreen,
+  },
+  Users: {
+    screen: UsersScreen,
   },
   Sketchbook: {
     screen: MySketchbookScreen
