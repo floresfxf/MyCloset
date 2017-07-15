@@ -16,6 +16,7 @@ After this, simply open the project in expo, wait for everything to load, and yo
 
 ## Using the API
 The backend server api is located here:
+https://github.com/floresfxf/hackathon-server
 https://fringuante-moliere-12742.herokuapp.com
 
 These are the routes you will use to communicate with the database:
