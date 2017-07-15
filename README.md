@@ -20,7 +20,7 @@ https://fringuante-moliere-12742.herokuapp.com
 
 These are the routes you will use to communicate with the database:
   
-**METHOD:POST**  
+**METHOD: POST**  
 `/users/register`  
 *Register a new user*  
   
@@ -28,33 +28,34 @@ Body:
  * username
  * password 
   
-**METHOD:POST**  
-`/users/login`    
+**METHOD: POST**  
 *Check a users credentials*  
+`/users/login`    
   
 Body:
  * username
  * password 
   
-**METHOD:GET**  
-`/all/items/:username`   
+**METHOD: GET**  
 *Generate all items in a specified users closet*  
+`/all/items/:username`   
   
-**METHOD:GET**  
-`/all/:username`  
+**METHOD: GET**  
 *Generate the entire user model object*  
+`/all/:username`  
   
-**METHOD:GET**  
-`/all/designs`  
+**METHOD: GET**  
 *Generate all existing designs (NEWSFEED)*  
+`/all/designs`  
   
-**METHOD:GET**  
-`/all/designs/:username`  
+**METHOD: GET**  
 *Generate all designs for one specific user*  
+`/all/designs/:username`  
   
-**METHOD:POST**  
-`/new/items/:username`   
+**METHOD: POST**  
 *Add an article of clothing to a specific users closet*  
+`/new/items/:username`  
+
   
 Body:
  * type
@@ -63,22 +64,24 @@ Body:
  * upc
  * description
   
-**METHOD:POST**  
-`/new/designs/:username`  
+**METHOD: POST**  
 *Add a new design to a specific users sketchbook*  
+`/new/designs/:username`  
   
 Body:
  * styles
  * rating
  * items
   
-**METHOD:POST**  
-`/designs/voteup/:designId`   
+**METHOD: POST**  
 *Up vote a design*  
+`/designs/voteup/:designId`  
+
   
-**METHOD:POST**  
-`/designs/votedown/:designId`  
+**METHOD: POST**  
 *Down vote a design*  
+`/designs/votedown/:designId`  
+
   
 
 
