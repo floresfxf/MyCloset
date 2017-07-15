@@ -58,7 +58,7 @@ Body:
 
   
 Body:
- * type
+ * articleType
  * color
  * imageurl
  * upc
@@ -72,6 +72,8 @@ Body:
  * styles
  * rating
  * items
+ * title
+ * gender
   
 **METHOD: POST**  
 *Up vote a design*  
