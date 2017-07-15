@@ -15,38 +15,47 @@ The backend server api is located here:
 https://fringuante-moliere-12742.herokuapp.com
 
 These are the routes you will use to communicate with the database:
-
+  
+**METHOD:POST**  
 `/users/register`  
-**METHOD:POST**   
 Register a new user  
-`/users/login`  
+  
 **METHOD:POST**  
+`/users/login`    
 Check a users credentials  
-`/all/items/:username`  
+  
 **METHOD:GET**  
+`/all/items/:username`   
 Generate all items in a specified users closet  
+  
+**METHOD:GET**  
 `/all/:username`  
-**METHOD:GET**  
 Generate the entire user model object  
+  
+**METHOD:GET**  
 `/all/designs`  
-**METHOD:GET**  
 Generate all existing designs (NEWSFEED) 
-`/all/designs/:username`  
+  
 **METHOD:GET**  
+`/all/designs/:username`  
 Generate all designs for one specific user  
-`/new/items/:username`  
+  
 **METHOD:POST**  
+`/new/items/:username`   
 Add an article of clothing to a specific users closet  
+  
+**METHOD:POST**  
 `/new/designs/:username`  
-**METHOD:POST**  
 Add a new design to a specific users sketchbook  
-`/designs/voteup/:designId`  
+  
 **METHOD:POST**  
+`/designs/voteup/:designId`   
 Up vote a design  
-`/designs/votedown/:designId`  
+  
 **METHOD:POST**  
+`/designs/votedown/:designId`  
 Down vote a design  
-
+  
 
 ## Design Overview
 ### Clients Profile
