@@ -20,6 +20,12 @@ export default styles = StyleSheet.create({
     alignItems: 'stretch',
     backgroundColor: '#F5FCFF',
   },
+  layer1:{
+    flexDirection: 'row',
+    flex:1,
+    width: 80,
+    height: 80,
+  },
   map: {
     height: 100,
     width: 300,
@@ -118,5 +124,13 @@ export default styles = StyleSheet.create({
   big_icon: {
   width: 120,
   height: 120,
-  }
+},
+searchBar: {
+  paddingLeft: 30,
+  fontSize: 22,
+  height: 10,
+  flex: .1,
+  borderWidth: 9,
+  borderColor: '#E4E4E4',
+},
 });

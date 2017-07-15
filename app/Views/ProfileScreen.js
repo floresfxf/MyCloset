@@ -20,6 +20,18 @@ import styles from '../Styles/styles.js';
 export default class ProfileScreen extends React.Component {
   constructor(props){
         super(props);
+        this.state={
+          username:"Kevin",
+          photo:'https://facebook.github.io/react/img/logo_og.png',
+          firstname:"Kevin",
+          lastname:"kevin",
+          rating:3.2,
+          designs:['https://facebook.github.io/react/img/logo_og.png','https://facebook.github.io/react/img/logo_og.png',
+        'https://facebook.github.io/react/img/logo_og.png','https://facebook.github.io/react/img/logo_og.png',
+      'https://facebook.github.io/react/img/logo_og.png','https://facebook.github.io/react/img/logo_og.png'],
+          Closet:['https://facebook.github.io/react/img/logo_og.png','https://facebook.github.io/react/img/logo_og.png',
+        'https://facebook.github.io/react/img/logo_og.png','https://facebook.github.io/react/img/logo_og.png']
+        }
   }
   static navigationOptions = {
    tabBarLabel: 'Profile',
@@ -32,13 +44,19 @@ export default class ProfileScreen extends React.Component {
   };
   render(){
     return(
-      <View>
+    
         <View style={styles.containerFull}>
-          <TouchableOpacity style={styles.item}>
-            <Text>To: </Text>
-          </TouchableOpacity>
+          <Text>djdsfjfhdfj</Text>
+          <View style={styles.layer1}>
+            <Text>djdsfjfhdfj</Text>
+            <Image circle={{height: 40, width:40, borderRadius:40}}
+              style={{ marginLeft: 20, marginRight:20}}
+              source={{uri: this.state.photo}}/>
+          </View>
+
+
         </View>
-      </View>
+
     )
   }
 }
