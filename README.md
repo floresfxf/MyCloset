@@ -16,36 +16,36 @@ https://fringuante-moliere-12742.herokuapp.com
 
 These are the routes you will use to communicate with the database:
 
-`/users/register` 
-**METHOD:POST** 
-Register a new user
-`/users/login` 
-**METHOD:POST** 
-Check a users credentials
-`/all/items/:username` 
-**METHOD:GET** 
-Generate all items in a specified users closet
-`/all/:username` 
-**METHOD:GET** 
-Generate the entire user model object
-`/all/designs` 
-**METHOD:GET** 
-Generate all existing designs (NEWSFEED)
-`/all/designs/:username` 
-**METHOD:GET** 
-Generate all designs for one specific user
-`/new/items/:username` 
-**METHOD:POST** 
-Add an article of clothing to a specific users closet
-`/new/designs/:username` 
-**METHOD:POST** 
-Add a new design to a specific users sketchbook
-`/designs/voteup/:designId` 
-**METHOD:POST** 
-Up vote a design
-`/designs/votedown/:designId` 
-**METHOD:POST** 
-Down vote a design
+`/users/register`  
+**METHOD:POST**   
+Register a new user  
+`/users/login`  
+**METHOD:POST**  
+Check a users credentials  
+`/all/items/:username`  
+**METHOD:GET**  
+Generate all items in a specified users closet  
+`/all/:username`  
+**METHOD:GET**  
+Generate the entire user model object  
+`/all/designs`  
+**METHOD:GET**  
+Generate all existing designs (NEWSFEED) 
+`/all/designs/:username`  
+**METHOD:GET**  
+Generate all designs for one specific user  
+`/new/items/:username`  
+**METHOD:POST**  
+Add an article of clothing to a specific users closet  
+`/new/designs/:username`  
+**METHOD:POST**  
+Add a new design to a specific users sketchbook  
+`/designs/voteup/:designId`  
+**METHOD:POST**  
+Up vote a design  
+`/designs/votedown/:designId`  
+**METHOD:POST**  
+Down vote a design  
 
 
 ## Design Overview
