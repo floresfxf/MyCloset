@@ -12,18 +12,19 @@ import {
   AsyncStorage,
   FlatList,
   Image,
-  Picker,
   Keyboard,
   KeyboardAvoidingView,
   SegmentedControlIOS,
   ListItem
 } from 'react-native';
+// import { Container, Content, Picker } from 'native-base';
 import styles from '../Styles/styles.js';
 import { StackNavigator, TabNavigator } from 'react-navigation';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import SegmentedControlTab from 'react-native-segmented-control-tab';
 import Modal from 'react-native-modal';
 import Rating from 'react-native-ratings';
+import RadioForm, {RadioButton, RadioButtonInput, RadioButtonLabel} from 'react-native-simple-radio-button';
 
 
 const dummyDesigns = [
@@ -130,7 +131,10 @@ const dummyDesigns = [
 
 ]
 
-
+const seasons = [{label: 'All', value: 0 },
+    {label: 'Winter', value: 1 },{label: 'Spring', value: 2 },{label: 'Summer', value: 3 },{label: 'Fall', value: 4 }]
+const gender =[{label: 'Unisex', value: 0 },
+    {label: 'Mens', value: 1 },{label: 'Womens', value: 2 }]
 export default class DesignsScreen extends React.Component {
     constructor(props){
           super(props);
@@ -164,7 +168,7 @@ export default class DesignsScreen extends React.Component {
     }
 
     setFilter(value, type){
-        console.log('filter set', value, type);
+        console.log('FILTER IS SET TOOOOO', value, type);
         let currentFilters = this.state.filters;
         currentFilters[type] = value;
         this.setState({filters: currentFilters});
@@ -182,6 +186,7 @@ export default class DesignsScreen extends React.Component {
      ),
     };
   render(){
+
     return(
         <View>
             <Modal
@@ -206,13 +211,24 @@ export default class DesignsScreen extends React.Component {
                         />
                     </View>
                     <View>
-                        {/* ['All','Winter', 'Spring','Summer','Fall'] */}
                         <Text>Season: </Text>
-
+                        <RadioForm
+                            radio_props={[{label: 'All', value: 0 },
+                                {label: 'Winter', value: 1 },{label: 'Spring', value: 2 },{label: 'Summer', value: 3 },{label: 'Fall', value: 4 }]}
+                            initial={0}
+                            buttonSize={10}
+                            onPress={(value) => {this.setFilter(seasons[value].label,'season')}}
+                        />
                     </View>
                     <View>
                         <Text>Gender: </Text>
-
+                        <RadioForm
+                            radio_props={[{label: 'Unisex', value: 0 },
+                                {label: 'Mens', value: 1 },{label: 'Womens', value: 2 }]}
+                            initial={0}
+                            buttonSize={10}
+                            onPress={(value) => {this.setFilter(seasons[value].label,'season')}}
+                        />
                     </View>
                     <View>
                         <Text>Style: </Text>
