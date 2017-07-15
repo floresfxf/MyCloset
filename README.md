@@ -1,5 +1,9 @@
 # MyCloset
-My closet is an interactive application written for iOS which helps users find top-rated matching outfits for articles of clothing they may have in their closet.
+My closet is an interactive application written for iOS which helps users find top-rated matching outfits for articles of clothing they may have in their closet. Users will have a profile with an individual closet and sketchbook. To use the closet, users will either input the item UPC (Found on the clothing tag) or manually enter the information to the database. When items are added to the closet, users will able to find top-rated outfits WITH these specific articles of clothing in their closet!
+
+  
+Users will also have a sketchbook, where they will make outfits and submit them to the server, which will be displayed on the apps newfeed. The newsfeed is divided into 'All' and 'recommended', where recommended designs are designs that contain at least one article of clothing from your closet. Users will be able to upvote and downvote designs that they find on their newsfeed. Both newsfeeds will be ordered by rating.
+
 ## Getting Started
 To run this code, you must have [Expo.io](https://expo.io/) installed.
 After this is done run these commands in your terminal:
@@ -9,6 +13,78 @@ cd /MyCloset
 npm install
 ```
 After this, simply open the project in expo, wait for everything to load, and you'll be all set!
+
+## Using the API
+The backend server api is located here:
+https://fringuante-moliere-12742.herokuapp.com
+
+These are the routes you will use to communicate with the database:
+  
+**METHOD: POST**  
+*Register a new user*  
+`/users/register`  
+  
+Body:
+ * username
+ * password 
+  
+**METHOD: POST**  
+*Check a users credentials*  
+`/users/login`    
+  
+Body:
+ * username
+ * password 
+  
+**METHOD: GET**  
+*Generate all items in a specified users closet*  
+`/all/items/:username`   
+  
+**METHOD: GET**  
+*Generate the entire user model object*  
+`/all/:username`  
+  
+**METHOD: GET**  
+*Generate all existing designs (NEWSFEED)*  
+`/all/designs`  
+  
+**METHOD: GET**  
+*Generate all designs for one specific user*  
+`/all/designs/:username`  
+  
+**METHOD: POST**  
+*Add an article of clothing to a specific users closet*  
+`/new/items/:username`  
+
+  
+Body:
+ * type
+ * color
+ * imageurl
+ * upc
+ * description
+  
+**METHOD: POST**  
+*Add a new design to a specific users sketchbook*  
+`/new/designs/:username`  
+  
+Body:
+ * styles
+ * rating
+ * items
+  
+**METHOD: POST**  
+*Up vote a design*  
+`/designs/voteup/:designId`  
+
+  
+**METHOD: POST**  
+*Down vote a design*  
+`/designs/votedown/:designId`  
+
+  
+
+
 ## Design Overview
 ### Clients Profile
 #### My Closet 
