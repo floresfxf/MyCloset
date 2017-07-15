@@ -118,19 +118,35 @@ export default styles = StyleSheet.create({
     color: 'black'
   },
   icon: {
-   width: 26,
-   height: 26,
+    width: 26,
+    height: 26,
+  },
+  camera: {
+    flex: 1
+  },
+  rectangleContainer: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: 'transparent'
+  },
+  rectangle: {
+    height: 250,
+    width: 250,
+    borderWidth: 2,
+    borderColor: '#00FF00',
+    backgroundColor: 'transparent'
   },
   big_icon: {
   width: 120,
   height: 120,
+  },
+  tabsContainer: {
+  flexDirection: 'row',               // Arrange tabs in a row
+  paddingTop: 30,                     // Top padding
 },
-searchBar: {
-  paddingLeft: 30,
-  fontSize: 22,
-  height: 10,
-  flex: .1,
-  borderWidth: 9,
-  borderColor: '#E4E4E4',
-},
+designRow: {
+    flex: 1
+}
+
 });

@@ -17,6 +17,7 @@ import {
   ListItem,
 } from 'react-native';
 import styles from '../Styles/styles.js';
+const baseURL = 'https://fringuante-moliere-12742.herokuapp.com';
 export default class ProfileScreen extends React.Component {
   constructor(props){
         super(props);
@@ -44,17 +45,12 @@ export default class ProfileScreen extends React.Component {
   };
   render(){
     return(
-    
+
         <View style={styles.containerFull}>
-          <Text>djdsfjfhdfj</Text>
-          <View style={styles.layer1}>
-            <Text>djdsfjfhdfj</Text>
-            <Image circle={{height: 40, width:40, borderRadius:40}}
-              style={{ marginLeft: 20, marginRight:20}}
-              source={{uri: this.state.photo}}/>
-          </View>
-
-
+          <TouchableOpacity style={styles.item}
+              onPress={() => this.props.navigation.navigate('Import') }>
+            <Text>To: </Text>
+          </TouchableOpacity>
         </View>
 
     )
