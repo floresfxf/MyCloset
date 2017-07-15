@@ -19,12 +19,11 @@ import {
 } from 'react-native';
 // import { Container, Content, Picker } from 'native-base';
 import styles from '../Styles/styles.js';
+import DesignsFilterModal from './DesignsFilterModal'
 import { StackNavigator, TabNavigator } from 'react-navigation';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import SegmentedControlTab from 'react-native-segmented-control-tab';
-import Modal from 'react-native-modal';
-import Rating from 'react-native-ratings';
-import RadioForm, {RadioButton, RadioButtonInput, RadioButtonLabel} from 'react-native-simple-radio-button';
+
 
 
 const dummyDesigns = [
@@ -158,21 +157,44 @@ export default class DesignsScreen extends React.Component {
         //fet
     }
 
+    filterData() {
+        const filters = this.state.filters;
+        const newdata = dummyDesigns.filter( (design) => {
+            //if the users inputed a username that was larger than 3 characters(any smaler is invalid)
+            if(filters['username']){
+                return filters['username'] == design.user
+            }
+            return true
+        })
+        const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
+        this.setState({dataSource: ds.cloneWithRows(newdata)})
+        return this.state.dataSource;
+    }
+
     toggleFilter(){
         this.setState({ isModalOpen: !this.state.isModalOpen })
     }
 
-    onFilterSubmit() {
-        this.setState({ isModalOpen: false });
-        console.log('filters submitted', this.state.filters);
+    onFilterSubmit(filters) {
+        // let filtersCopy = JSON.parse(JSON.stringify(filters));
+        // if(filtersCopy['username'] && !filtersCopy['username'].length > 3){
+        //     delete filtersCopy['username'];
+        //
+        // this.setState({ isModalOpen: false, filters: filtersCopy });
+        const newdata = dummyDesigns.filter( (design) => {
+            //if the users inputed a username that was larger than 3 characters(any smaler is invalid)
+            let userFilter = true;
+            if(filters['username'] && filters['username'].length > 4){
+                userFilter = (filters['username'].toUpperCase() == design.user.toUpperCase());
+            }
+            return userFilter
+        })
+        const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
+        this.setState({ isModalOpen: false, filters: filters, dataSource: ds.cloneWithRows(newdata) });
+        console.log('filters submitted YEAAAAAAAAAAAAA', filters);
     }
 
-    setFilter(value, type){
-        console.log('FILTER IS SET TOOOOO', value, type);
-        let currentFilters = this.state.filters;
-        currentFilters[type] = value;
-        this.setState({filters: currentFilters});
-    }
+
 
     static navigationOptions = {
            title: 'Designs',//title on header
@@ -189,61 +211,14 @@ export default class DesignsScreen extends React.Component {
 
     return(
         <View>
-            <Modal
-                style={{ flex: 1, left: 0, top: 0, bottom: 0, height: '100%', width: '60%', backgroundColor: 'white' }}
-                animationIn={'slideInLeft'}
-                animationOut={'slideOutLeft'}
-                onRequestClose={() => {this.toggleFilter()}}
-                isVisible={this.state.isModalOpen}>
-                <View>
-                    <View>
-                        <Text>Designs by:</Text>
-                        <TextInput placeholder={"username"}
-                            style={styles.textBox}  autoCorrect={false} onChangeText={(text)=>this.setFilter(text,'username')}/>
-                    </View>
-                    <View>
-                        <Text>Rating: (slide to select)</Text>
-                        <Rating
-                            type='star'
-                            ratingCount={5}
-                            imageSize={35}
-                            onFinishRating={(rating) => this.setFilter(rating, 'rating')}
-                        />
-                    </View>
-                    <View>
-                        <Text>Season: </Text>
-                        <RadioForm
-                            radio_props={[{label: 'All', value: 0 },
-                                {label: 'Winter', value: 1 },{label: 'Spring', value: 2 },{label: 'Summer', value: 3 },{label: 'Fall', value: 4 }]}
-                            initial={0}
-                            buttonSize={10}
-                            onPress={(value) => {this.setFilter(seasons[value].label,'season')}}
-                        />
-                    </View>
-                    <View>
-                        <Text>Gender: </Text>
-                        <RadioForm
-                            radio_props={[{label: 'Unisex', value: 0 },
-                                {label: 'Mens', value: 1 },{label: 'Womens', value: 2 }]}
-                            initial={0}
-                            buttonSize={10}
-                            onPress={(value) => {this.setFilter(seasons[value].label,'season')}}
-                        />
-                    </View>
-                    <View>
-                        <Text>Style: </Text>
+            {this.state.isModalOpen ? <DesignsFilterModal
+                toggleFilter={() => this.toggleFilter()}
+                // setFilter= {() => this.setFilter()}
+                currentFilters={this.state.filters}
+                isModalOpen={this.state.isModalOpen}
+                onFilterSubmit={(filters) => this.onFilterSubmit(filters)}
+                                      /> : null}
 
-                    </View>
-                    <View style={{flexDirection: 'row'}}>
-                        <TouchableOpacity style={[styles.button, styles.buttonRed, {flex: 1}]} onPress={() => this.toggleFilter()}>
-                            <Text style={styles.buttonLabel}>Cancel</Text>
-                        </TouchableOpacity>
-                        <TouchableOpacity style={[styles.button, styles.buttonGreen, {flex: 1}]} onPress={() => this.onFilterSubmit()}>
-                            <Text style={styles.buttonLabel}>Filter</Text>
-                        </TouchableOpacity>
-                    </View>
-                </View>
-            </Modal>
             <SegmentedControlTab
                 values = {['All','Recommended']}
                 selectedIndex={this.state.activeTab}
@@ -256,7 +231,6 @@ export default class DesignsScreen extends React.Component {
                 //   removeClippedSubviews={true}
                 dataSource={this.state.dataSource}
                 renderRow={(rowData) => {
-                    console.log(rowData);
                     return (
                         <View style={{flexDirection: 'column', height: 140, borderBottomWidth: 1, borderColor: 'gray', padding: 2, backgroundColor: 'white'}}>
                             <View style={{flex: 1, flexDirection: 'row'}}>
