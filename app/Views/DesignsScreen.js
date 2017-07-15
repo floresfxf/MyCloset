@@ -12,6 +12,7 @@ import {
   AsyncStorage,
   FlatList,
   Image,
+  Picker,
   Keyboard,
   KeyboardAvoidingView,
   SegmentedControlIOS,
@@ -22,15 +23,7 @@ import { StackNavigator, TabNavigator } from 'react-navigation';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import SegmentedControlTab from 'react-native-segmented-control-tab';
 import Modal from 'react-native-modal';
-import StarRating from 'react-native-star-rating';
-import EntypoIcons from 'react-native-vector-icons/Entypo';
-import EvilIconsIcons from 'react-native-vector-icons/EvilIcons';
-import FontAwesomeIcons from 'react-native-vector-icons/FontAwesome';
-import FoundationIcons from 'react-native-vector-icons/Foundation';
-import IoniconsIcons from 'react-native-vector-icons/Ionicons';
-import MaterialIconsIcons from 'react-native-vector-icons/MaterialIcons';
-import OcticonsIcons from 'react-native-vector-icons/Octicons';
-import ZocialIcons from 'react-native-vector-icons/Zocial';
+import Rating from 'react-native-ratings';
 
 
 const dummyDesigns = [
@@ -171,6 +164,7 @@ export default class DesignsScreen extends React.Component {
     }
 
     setFilter(value, type){
+        console.log('filter set', value, type);
         let currentFilters = this.state.filters;
         currentFilters[type] = value;
         this.setState({filters: currentFilters});
@@ -203,15 +197,16 @@ export default class DesignsScreen extends React.Component {
                             style={styles.textBox}  autoCorrect={false} onChangeText={(text)=>this.setFilter(text,'username')}/>
                     </View>
                     <View>
-                        <Text>Rating: </Text>
-                        <StarRating
-                            maxStars={5}
-                            rating={this.state.filters['rating'] || 0}
-                            selectedStar={(rating) => this.setFilter(rating, 'rating')}
+                        <Text>Rating: (slide to select)</Text>
+                        <Rating
+                            type='star'
+                            ratingCount={5}
+                            imageSize={35}
+                            onFinishRating={(rating) => this.setFilter(rating, 'rating')}
                         />
-
                     </View>
                     <View>
+                        {/* ['All','Winter', 'Spring','Summer','Fall'] */}
                         <Text>Season: </Text>
 
                     </View>
