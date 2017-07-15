@@ -88,7 +88,7 @@ const MyApp = TabNavigator({
 export default StackNavigator({
   Home: {
     // screen: LoginScreen,
-    screen: MyApp
+    screen: LoginScreen
   },
   Register: {
     screen: RegisterScreen,
@@ -98,8 +98,8 @@ export default StackNavigator({
   },
   Tab: {
     screen: MyApp,
-    navigationOptions: {
-           headerLeft:false,
-    }
+    // navigationOptions: {
+    //        headerLeft:false,
+    // }
   }
 }, {initialRouteName: 'Home'});//start on home
