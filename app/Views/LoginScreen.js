@@ -77,7 +77,7 @@ export default class LoginScreen extends React.Component { //TODO: Save user inf
   }
   handleSubmit(){
     let self = this;
-    fetch(baseURL + '/login', {
+    fetch(baseURL + '/users/login', {
       method: 'POST',
       headers: {
         'Accept': 'application/json',
