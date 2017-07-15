@@ -23,6 +23,9 @@ These are the routes you will use to communicate with the database:
 **METHOD:POST**  
 `/users/register`  
 Register a new user  
+Body:  
+ * username
+ * password 
   
 **METHOD:POST**  
 `/users/login`    
