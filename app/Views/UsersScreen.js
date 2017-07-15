@@ -39,7 +39,7 @@ export default class UsersScreen extends React.Component {
    tabBarLabel: 'Designs',//title on tab bar
    tabBarIcon: ({ tintColor }) => ( //Assign the tint color AKA color when active
      <Image
-         source={require('../img/designs_icon.png')}
+         source={require('../img/closet_icon.png')}
        style={[styles.icon, {tintColor: tintColor}]}
      />
    ),

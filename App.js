@@ -5,6 +5,7 @@ import {
   Text,
   TouchableOpacity,
   TouchableWithoutFeedback,
+  TouchableHighLight,
   TextInput,
   ListView,
   Alert,
@@ -25,7 +26,9 @@ import MySketchbookScreen from './app/Views/SketchbookScreen.js';
 import ProfileScreen from './app/Views/ProfileScreen.js';
 import LoginScreen from './app/Views/LoginScreen.js';
 import MyClosetScreen from './app/Views/MyClosetScreen.js';
+import DesignsScreen from './app/Views/DesignsScreen.js';
 import ImportScreen from './app/Views/ImportScreen.js';
+
 
 const baseURL = 'https://hohoho-backend.herokuapp.com';
 //Screens
@@ -64,10 +67,13 @@ class MainScreen extends React.Component {
 
 const MyApp = TabNavigator({
   Home: {
-    screen: UsersScreen,
+    screen: DesignsScreen,
   },
   Closet: {
     screen: MyClosetScreen,
+  },
+  Users: {
+    screen: UsersScreen,
   },
   Sketchbook: {
     screen: MySketchbookScreen
@@ -75,6 +81,9 @@ const MyApp = TabNavigator({
   Profile: {
     screen: ProfileScreen,
   },
+  Designs: {
+      screen: DesignsScreen
+  }
 }, {
   tabBarOptions: {
     activeTintColor: '#e91e63', //Tab icon color when active
@@ -83,7 +92,8 @@ const MyApp = TabNavigator({
 //Export Navigator (Will be run first)
 export default StackNavigator({
   Home: {
-    screen: LoginScreen,
+    // screen: LoginScreen,
+    screen: MyApp
   },
   Register: {
     screen: RegisterScreen,

@@ -20,6 +20,12 @@ export default styles = StyleSheet.create({
     alignItems: 'stretch',
     backgroundColor: '#F5FCFF',
   },
+  layer1:{
+    flexDirection: 'row',
+    flex:1,
+    width: 80,
+    height: 80,
+  },
   map: {
     height: 100,
     width: 300,
@@ -115,10 +121,6 @@ export default styles = StyleSheet.create({
     width: 26,
     height: 26,
   },
-  big_icon: {
-    width: 120,
-    height: 120,
-  },
   camera: {
     flex: 1
   },
@@ -135,4 +137,16 @@ export default styles = StyleSheet.create({
     borderColor: '#00FF00',
     backgroundColor: 'transparent'
   },
+  big_icon: {
+  width: 120,
+  height: 120,
+  },
+  tabsContainer: {
+  flexDirection: 'row',               // Arrange tabs in a row
+  paddingTop: 30,                     // Top padding
+},
+designRow: {
+    flex: 1
+}
+
 });

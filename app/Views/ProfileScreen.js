@@ -20,7 +20,21 @@ import styles from '../Styles/styles.js';
 const baseURL = 'https://fringuante-moliere-12742.herokuapp.com';
 export default class ProfileScreen extends React.Component {
   constructor(props){
-    super(props);
+
+        super(props);
+        this.state={
+          username:"Kevin",
+          photo:'https://facebook.github.io/react/img/logo_og.png',
+          firstname:"Kevin",
+          lastname:"kevin",
+          rating:3.2,
+          designs:['https://facebook.github.io/react/img/logo_og.png','https://facebook.github.io/react/img/logo_og.png',
+        'https://facebook.github.io/react/img/logo_og.png','https://facebook.github.io/react/img/logo_og.png',
+      'https://facebook.github.io/react/img/logo_og.png','https://facebook.github.io/react/img/logo_og.png'],
+          Closet:['https://facebook.github.io/react/img/logo_og.png','https://facebook.github.io/react/img/logo_og.png',
+        'https://facebook.github.io/react/img/logo_og.png','https://facebook.github.io/react/img/logo_og.png']
+        }
+
   }
   static navigationOptions = {
     tabBarLabel: 'Profile',
@@ -31,6 +45,7 @@ export default class ProfileScreen extends React.Component {
       />
     ),
   };
+
 //   setData(){
 //     const styles = ['casual', 'lounge'];
 //     const items = [
@@ -89,4 +104,5 @@ render(){
     </View>
   )
 }
+
 }
