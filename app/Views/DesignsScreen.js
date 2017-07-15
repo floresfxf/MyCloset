@@ -154,23 +154,22 @@ export default class DesignsScreen extends React.Component {
           method: 'GET'
         })
         .then((response) => {
-            // alert(response);
-            console.log(response);
+          console.log('response is', response);
             return response.json();
         })
         .then((responseJson) => {
-            // alert(responseJson)
-           if(responseJson.success){
-               let filteredData = this.filterData(responseJson.designs);
-
-
-              const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2})
-              this.setState({refreshing: false, dataSource: ds.cloneWithRows(filteredData)});
-           }else{
-               alert(responseJson.error);
-               console.log('error in get designs', responseJson.error);
-               this.setState({refreshing: false});
-           }
+            console.log('responsejson', responseJson);
+            let filteredData = this.filterData(responseJson);
+          //  if(responseJson.success){
+           //
+           //
+          //     const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2})
+          //     this.setState({refreshing: false, dataSource: ds.cloneWithRows(filteredData)});
+          //  }else{
+          //      alert(responseJson.error);
+          //      console.log('error in get designs', responseJson.error);
+          //      this.setState({refreshing: false});
+          //  }
         })
         .catch((err) => {
             // alert(err);
@@ -209,19 +208,19 @@ export default class DesignsScreen extends React.Component {
         });
     }
 
-    // filterData() {
-    //     const filters = this.state.filters;
-    //     const newdata = dummyDesigns.filter( (design) => {
-    //         //if the users inputed a username that was larger than 3 characters(any smaler is invalid)
-    //         if(filters['username']){
-    //             return filters['username'] == design.user
-    //         }
-    //         return true
-    //     })
-    //     const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
-    //     this.setState({dataSource: ds.cloneWithRows(newdata)})
-    //     return this.state.dataSource;
-    // }
+    filterData(data) {
+        const filters = this.state.filters;
+        const newdata = data.filter( (design) => {
+            //if the users inputed a username that was larger than 3 characters(any smaler is invalid)
+            if(filters['username']){
+                return filters['username'] == design.user
+            }
+            return true
+        })
+        const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
+        this.setState({dataSource: ds.cloneWithRows(newdata), refreshing: false})
+        return this.state.dataSource;
+    }
 
     toggleFilter(){
         this.setState({ isModalOpen: !this.state.isModalOpen })

@@ -21,7 +21,9 @@ import { StackNavigator, TabNavigator } from 'react-navigation';
 import Hr from 'react-native-hr';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import UsersScreen from './app/Views/UsersScreen.js';
+import ClosetsScreen from './app/Views/ClosetsScreen.js';
 import RegisterScreen from './app/Views/RegisterScreen.js';
+import NewDesignScreen from './app/Views/NewDesignScreen.js';
 import MySketchbookScreen from './app/Views/SketchbookScreen.js';
 import ProfileScreen from './app/Views/ProfileScreen.js';
 import LoginScreen from './app/Views/LoginScreen.js';
@@ -66,14 +68,11 @@ class MainScreen extends React.Component {
 
 
 const MyApp = TabNavigator({
-  Home: {
+  Designs: {
     screen: DesignsScreen,
   },
   Closet: {
     screen: MyClosetScreen,
-  },
-  Users: {
-    screen: UsersScreen,
   },
   Sketchbook: {
     screen: MySketchbookScreen
@@ -81,8 +80,8 @@ const MyApp = TabNavigator({
   Profile: {
     screen: ProfileScreen,
   },
-  Designs: {
-      screen: DesignsScreen
+  AllClosets: {
+      screen: ClosetsScreen
   }
 }, {
   tabBarOptions: {
@@ -94,6 +93,9 @@ export default StackNavigator({
   Home: {
     // screen: LoginScreen,
     screen: MyApp
+  },
+  NewDesign: {
+    screen: NewDesignScreen
   },
   Register: {
     screen: RegisterScreen,

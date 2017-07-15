@@ -46,41 +46,41 @@ export default class ProfileScreen extends React.Component {
     ),
   };
 
-//   setData(){
-//     const styles = ['casual', 'lounge'];
-//     const items = [
-//             {type: 'Sweatpants',
-//             brand: 'H&M',
-//             image: 'http://lp.hm.com/hmprod?set=key[source],value[/model/2017/E00%200478831%20001%2043%202395.jpg]&set=key[rotate],value[]&set=key[width],value[]&set=key[height],value[]&set=key[x],value[]&set=key[y],value[]&set=key[type],value[STILL_LIFE_FRONT]&set=key[hmver],value[3]&call=url[file:/product/full]',
-//             description: '',
-//             gender: 'Mens'
-//         },
-//         {type: 'TShirt',
-//         brand: 'Adidas',
-//         image: 'http://images.champssports.com/is/image/EBFL2/S23125_fr_sc7_copy?hei=1500&wid=1500',
-//         description: '',
-//         gender: 'Unisex'
-//         },
-//         {type: 'Sweatshirt',
-//         brand: 'Polo Ralph Lauren',
-//         image: 'http://s7d2.scene7.com/is/image/PoloGSI/s7-1242056_lifestyle?$flyout_main$&cropN=0.12,0,0.7993,1&iv=Bm2et1&wid=1410&hei=1770&fit=fit,1',
-//         description: '',
-//         gender: 'Unisex'
-//     }];
-//     fetch(baseURL + '/new/designs/kevin123', {
-//       method: 'POST',
-//       headers: {
-//         'Accept': 'application/json',
-//         'Content-Type': 'application/json',
-//       },
-//       body: JSON.stringify({
-//         user: 'kevin123',
-//         title: 'designtitle',
-//         styles: styles,
-//         rating: 20,
-//         items: items,
-//   })
-// })
+  setData(){
+    const styles = ['casual', 'lounge'];
+    const items = [
+            {type: 'Sweatpants',
+            brand: 'H&M',
+            image: 'http://lp.hm.com/hmprod?set=key[source],value[/model/2017/E00%200478831%20001%2043%202395.jpg]&set=key[rotate],value[]&set=key[width],value[]&set=key[height],value[]&set=key[x],value[]&set=key[y],value[]&set=key[type],value[STILL_LIFE_FRONT]&set=key[hmver],value[3]&call=url[file:/product/full]',
+            description: '',
+            gender: 'Mens'
+        },
+        {type: 'TShirt',
+        brand: 'Adidas',
+        image: 'http://images.champssports.com/is/image/EBFL2/S23125_fr_sc7_copy?hei=1500&wid=1500',
+        description: '',
+        gender: 'Unisex'
+        },
+        {type: 'Sweatshirt',
+        brand: 'Polo Ralph Lauren',
+        image: 'http://s7d2.scene7.com/is/image/PoloGSI/s7-1242056_lifestyle?$flyout_main$&cropN=0.12,0,0.7993,1&iv=Bm2et1&wid=1410&hei=1770&fit=fit,1',
+        description: '',
+        gender: 'Unisex'
+    }];
+    fetch(baseURL + '/new/designs/pam@aol.com', {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        user: 'pam@aol.com',
+        title: 'designtitle',
+        styles: styles,
+        rating: 20,
+        items: items,
+  })
+})
 .then((response) => response.json())
 .then((resp) => {
   console.log(resp);

@@ -17,12 +17,14 @@ import {
   ListItem,
 } from 'react-native';
 import styles from '../Styles/styles.js';
+import NewDesignScreen from './NewDesignScreen';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 export default class MySketchbookScreen extends React.Component {
   constructor(props){
         super(props);
   }
   static navigationOptions = {
+    title: 'My Sketchbook',
    tabBarLabel: 'Sketchbook',
    tabBarIcon: ({ tintColor }) => (
      <Image
@@ -35,8 +37,10 @@ export default class MySketchbookScreen extends React.Component {
     return(
       <View>
         <View style={styles.containerFull}>
-          <TouchableOpacity style={styles.item}>
-            <Text>To: </Text>
+          <TouchableOpacity
+            onPress={() => this.props.navigation.navigate('NewDesign')}
+            style={[styles.button, styles.buttonBlue]}>
+            <Text>Create a new design</Text>
           </TouchableOpacity>
         </View>
       </View>
