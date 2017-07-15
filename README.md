@@ -23,13 +23,16 @@ These are the routes you will use to communicate with the database:
 **METHOD:POST**  
 `/users/register`  
 Register a new user  
-Body:  
+Body:
  * username
  * password 
   
 **METHOD:POST**  
 `/users/login`    
 Check a users credentials  
+Body:
+ * username
+ * password 
   
 **METHOD:GET**  
 `/all/items/:username`   
@@ -50,10 +53,20 @@ Generate all designs for one specific user
 **METHOD:POST**  
 `/new/items/:username`   
 Add an article of clothing to a specific users closet  
+Body:
+ * type
+ * color
+ * imageurl
+ * upc
+ * description
   
 **METHOD:POST**  
 `/new/designs/:username`  
 Add a new design to a specific users sketchbook  
+Body:
+ * styles
+ * rating
+ * items
   
 **METHOD:POST**  
 `/designs/voteup/:designId`   
@@ -63,6 +76,7 @@ Up vote a design
 `/designs/votedown/:designId`  
 Down vote a design  
   
+
 
 ## Design Overview
 ### Clients Profile
