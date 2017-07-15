@@ -17,6 +17,7 @@ import {
   ListItem,
 } from 'react-native';
 import styles from '../Styles/styles.js';
+const baseURL = 'https://fringuante-moliere-12742.herokuapp.com';
 export default class ProfileScreen extends React.Component {
   constructor(props){
         super(props);
@@ -34,7 +35,8 @@ export default class ProfileScreen extends React.Component {
     return(
       <View>
         <View style={styles.containerFull}>
-          <TouchableOpacity style={styles.item}>
+          <TouchableOpacity style={styles.item}
+              onPress={() => this.props.navigation.navigate('Import') }>
             <Text>To: </Text>
           </TouchableOpacity>
         </View>

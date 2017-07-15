@@ -17,8 +17,9 @@ import {
   ListItem,
 } from 'react-native';
 import styles from '../Styles/styles.js';
+import Hr from 'react-native-hr';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
-const baseURL = 'https://hohoho-backend.herokuapp.com';
+const baseURL = 'https://fringuante-moliere-12742.herokuapp.com';
 
 export default class RegisterScreen extends React.Component {
   constructor(props){
@@ -39,7 +40,7 @@ export default class RegisterScreen extends React.Component {
   handleSubmit(){
     if (this.state.password === this.state.confirmPassword){
       if (this.validateEmail(this.state.username)){
-        fetch(baseURL + '/register', {
+        fetch(baseURL + '/users/register', {
           method: 'POST',
           headers: {
             'Accept': 'application/json',
@@ -48,14 +49,23 @@ export default class RegisterScreen extends React.Component {
           body: JSON.stringify({
             username: this.state.username,
             password: this.state.password,
-            city: this.state.city,
-            state: this.state.state
           })
         })
         .then((response) => response.json())
         .then((resp) => {
-          this.setState({ username: '', password: '', confirmPassword: '', city: '', state: ''});
-          this.props.navigation.goBack();
+          console.log(resp);
+          if(resp.success){
+            AsyncStorage.setItem('user', JSON.stringify({//Save user credentials in async storage
+              username: this.state.username,
+              password: this.state.password
+            }))
+            .then(()=>{
+              this.setState({ username: '', password: '', confirmPassword: '', city: '', state: ''});
+              this.props.navigation.goBack();
+            })
+          }else{
+            Alert.alert(resp.error);
+          }
         })
       }else{
         Alert.alert("Invalid Email", "Invalid Email Address! Please try again.")
